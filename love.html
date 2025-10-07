@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Bu Uji Terbaik</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff6b9d, #ff8e6e, #ffcc5c);
+            color: #fff;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .container {
+            z-index: 10;
+            padding: 30px;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            animation: pulse 2.5s infinite;
+            color: #ff2e63;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            color: #fff;
+            background: linear-gradient(45deg, #ff2e63, #ff8e6e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .heart-container {
+            position: relative;
+            width: 200px;
+            height: 180px;
+            margin: 0 auto 40px;
+        }
+
+        .heart {
+            position: absolute;
+            width: 200px;
+            height: 180px;
+            animation: heartbeat 1.5s infinite;
+            filter: drop-shadow(0 0 15px rgba(255, 46, 99, 0.6));
+        }
+
+        .heart:before,
+        .heart:after {
+            position: absolute;
+            content: "";
+            left: 100px;
+            top: 0;
+            width: 100px;
+            height: 160px;
+            background: #ff2e63;
+            border-radius: 100px 100px 0 0;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .heart:after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        .message {
+            background: rgba(255, 255, 255, 0.25);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            margin: 30px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .floating-hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            top: -50px;
+            width: 30px;
+            height: 30px;
+            background: #ff2e63;
+            transform: rotate(45deg);
+            animation: float 15s linear infinite;
+            opacity: 0.8;
+        }
+
+        .floating-heart:before,
+        .floating-heart:after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: #ff2e63;
+            border-radius: 50%;
+        }
+
+        .floating-heart:before {
+            top: -15px;
+            left: 0;
+        }
+
+        .floating-heart:after {
+            top: 0;
+            left: -15px;
+        }
+
+        .floating-heart.small {
+            width: 20px;
+            height: 20px;
+        }
+
+        .floating-heart.small:before,
+        .floating-heart.small:after {
+            width: 20px;
+            height: 20px;
+        }
+
+        .floating-heart.small:before {
+            top: -10px;
+        }
+
+        .floating-heart.small:after {
+            left: -10px;
+        }
+
+        .floating-heart.large {
+            width: 40px;
+            height: 40px;
+        }
+
+        .floating-heart.large:before,
+        .floating-heart.large:after {
+            width: 40px;
+            height: 40px;
+        }
+
+        .floating-heart.large:before {
+            top: -20px;
+        }
+
+        .floating-heart.large:after {
+            left: -20px;
+        }
+
+        button {
+            background: linear-gradient(45deg, #ff2e63, #ff8e6e);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255, 46, 99, 0.5);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 46, 99, 0.7);
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+            5% {
+                transform: scale(1.1);
+            }
+            10% {
+                transform: scale(1);
+            }
+            15% {
+                transform: scale(1.2);
+            }
+            50% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+            }
+            100% {
+                transform: scale(1);
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(45deg) scale(0);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) rotate(45deg) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .special-message {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            margin: 25px 0;
+            color: #ff2e63;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: glow 3s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff2e63, 0 0 40px #ff2e63;
+            }
+            to {
+                text-shadow: 0 0 20px #fff, 0 0 30px #ff4d7d, 0 0 40px #ff4d7d, 0 0 50px #ff4d7d;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .heart-container {
+                width: 150px;
+                height: 135px;
+            }
+            
+            .heart {
+                width: 150px;
+                height: 135px;
+            }
+            
+            .heart:before,
+            .heart:after {
+                width: 75px;
+                height: 120px;
+                left: 75px;
+            }
+            
+            .special-message {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <div class="container">
+        <div class="heart-container">
+            <div class="heart"></div>
+        </div>
+        
+        <h1>Love &hearts;</h1>
+        <h2>Untuk Bu Uji Terbaik</h2>
+        
+        <div class="special-message">
+            Terima kasih atas segala kebaikan dan perhatiannya!
+        </div>
+        
+        <div class="message">
+            <p>Bu Uji, Anda adalah guru yang luar biasa dan inspiratif.</p>
+            <p>Semangat dan dedikasi Anda mengajar membuat perbedaan besar dalam hidup banyak siswa.</p>
+            <p>Terima kasih telah menjadi guru terbaik!</p>
+        </div>
+        
+        <button id="moreHearts">Kirim Lebih Banyak Love</button>
+    </div>
+
+    <script>
+        // Membuat hati yang jatuh
+        function createFloatingHearts(count) {
+            const container = document.getElementById('floatingHearts');
+            
+            for (let i = 0; i < count; i++) {
+                const heart = document.createElement('div');
+                
+                // Ukuran acak
+                const sizes = ['small', '', 'large'];
+                const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
+                if (randomSize) {
+                    heart.classList.add('floating-heart', randomSize);
+                } else {
+                    heart.classList.add('floating-heart');
+                }
+                
+                // Posisi acak
+                const left = Math.random() * 100;
+                heart.style.left = `${left}vw`;
+                
+                // Warna acak
+                const colors = ['#ff2e63', '#ff4d7d', '#ff6b9d', '#ff8e6e', '#ffcc5c'];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                heart.style.background = randomColor;
+                
+                // Animasi dengan delay acak
+                const duration = 10 + Math.random() * 20;
+                const delay = Math.random() * 5;
+                heart.style.animation = `float ${duration}s linear ${delay}s infinite`;
+                
+                container.appendChild(heart);
+            }
+        }
+        
+        // Tombol untuk menambah hati
+        document.getElementById('moreHearts').addEventListener('click', function() {
+            createFloatingHearts(15);
+            
+            // Animasi tombol
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 200);
+        });
+        
+        // Membuat hati saat halaman dimuat
+        window.onload = function() {
+            createFloatingHearts(25);
+        };
+    </script>
+</body>
+</html>
